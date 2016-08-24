@@ -1,0 +1,186 @@
+{% extends "log/base.html" %}
+
+{% block content %}
+		
+<h2 align="center">Thematic Tours</h2>
+{% load staticfiles %}
+<div class="container">
+<div class="row">
+<form action="/tours/anazhthsh/" method="post" id="sub" class="form-inline">
+	{% csrf_token %}
+	
+	<div class="col-xs-12 col-md-8">
+	{{ form1 }}
+	<input class="btn btn-success btn-sm" type="submit" value="search" />
+	</div>
+	<div class=".col-xs-6 col-md-4">
+		{{ form2 }}
+	</div>
+	
+</form> 
+</div>
+<hr>
+<div class="row">
+	
+	<div class="col-xs-6 col-sm-4">
+		<figure>
+			<fieldset>
+				<form onsubmit="get_action_kids_and_family(this);">
+					<input style="width:300px;height:270px;" type="image" src="{% static 'tours/img/7.jpg' %}" id="kids_and_family"/>
+					<figcaption><u> Kids and family </u></figcaption>
+				</form>
+			</fieldset>
+		</figure>
+	</div>
+	<div class="col-xs-6 col-sm-4">
+		<figure>
+			<fieldset>
+				<form onsubmit="get_action_gastronomy(this);">
+					<input style="width:300px;height:270px;" type="image" src="{% static 'tours/img/8.jpg' %}" id="gastronomy"/>
+					<figcaption><u> Gastronomy </u></figcaption>
+				</form>
+			<fieldset>
+		</figure>
+	</div>	
+	<div class="col-xs-6 col-sm-4">
+		<figure>
+			<fieldset>
+				<form onsubmit="get_action_photo(this);">
+					<input style="width:300px;height:270px;" type="image" src="{% static 'tours/img/9.jpg' %}" id="photo"/>
+					<figcaption><u> Photo </u></figcaption>
+				</form>
+			<fieldset>
+		</figure>
+	</div>	
+ 
+</div>
+	<hr>
+<div class="row">
+	
+	<div class="col-xs-6 col-sm-4">
+		<figure>
+			<fieldset>
+				<form onsubmit="get_action_street_art(this);">
+					<input style="width:300px;height:270px;" type="image" src="{% static 'tours/img/10.jpg' %}" id="street_art"/>
+					<figcaption><u> Street Art </u></figcaption>
+				</form>
+			</fieldset>
+		</figure>
+	</div>
+	<div class="col-xs-6 col-sm-4">
+		<figure>
+			<fieldset>
+				<form onsubmit="get_action_political(this);">
+					<input style="width:300px;height:270px;" type="image" src="{% static 'tours/img/11.jpeg' %}" id="political"/>
+					<figcaption><u> Political </u></figcaption>
+				</form>
+			<fieldset>
+		</figure>
+	</div>	
+	<div class="col-xs-6 col-sm-4">
+		<figure>
+			<fieldset>
+				<form onsubmit="get_action_segway(this);">
+					<input style="width:300px;height:270px;" type="image" src="{% static 'tours/img/12.jpg' %}" id="segway"/>
+					<figcaption><u> Segway </u></figcaption>
+				</form>
+			<fieldset>
+		</figure>
+	</div>	
+ 
+</div>
+</div>
+
+<script type="text/javascript">
+
+
+function get_action_kids_and_family(form) {
+	if(document.getElementById('id_choice_0').checked){
+		form.action = "/tours/thematic_kids_and_family_group/";
+	}
+	else if(document.getElementById('id_choice_1').checked){
+		form.action = "/tours/thematic_kids_and_family_private/";
+	}
+	else{
+		form.action = "/tours/thematic_kids_and_family/";
+	}
+	  
+    }
+
+function get_action_gastronomy(form) {
+	if(document.getElementById('id_choice_0').checked){
+		form.action = "/tours/thematic_gastronomy_group/";
+	}
+	else if(document.getElementById('id_choice_1').checked){
+		form.action = "/tours/thematic_gastronomy_private/";
+	}
+	else{
+		form.action = "/tours/thematic_gastronomy/";
+	}
+	  
+    }	
+
+function get_action_photo(form) {
+	if(document.getElementById('id_choice_0').checked){
+		form.action = "/tours/thematic_photo_group/";
+	}
+	else if(document.getElementById('id_choice_1').checked){
+		form.action = "/tours/thematic_photo_private/";
+	}
+	else{
+		form.action = "/tours/thematic_photo/";
+	}
+	  
+    }	
+
+function get_action_street_art(form) {
+	if(document.getElementById('id_choice_0').checked){
+		form.action = "/tours/thematic_street_art_group/";
+	}
+	else if(document.getElementById('id_choice_1').checked){
+		form.action = "/tours/thematic_street_art_private/";
+	}
+	else{
+		form.action = "/tours/thematic_street_art/";
+	}
+	  
+    }	
+
+function get_action_political(form) {
+	if(document.getElementById('id_choice_0').checked){
+		form.action = "/tours/thematic_political_group/";
+	}
+	else if(document.getElementById('id_choice_1').checked){
+		form.action = "/tours/thematic_political_private/";
+	}
+	else{
+		form.action = "/tours/thematic_political/";
+	}
+	  
+    }	
+
+function get_action_segway(form) {
+	if(document.getElementById('id_choice_0').checked){
+		form.action = "/tours/thematic_segway_group/";
+	}
+	else if(document.getElementById('id_choice_1').checked){
+		form.action = "/tours/thematic_segway_private/";
+	}
+	else{
+		form.action = "/tours/thematic_segway/";
+	}
+	  
+    }		
+	
+	
+	
+</script>
+
+
+
+
+
+
+
+		
+{% endblock %}

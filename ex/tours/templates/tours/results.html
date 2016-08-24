@@ -1,0 +1,48 @@
+{% extends "log/base.html" %}
+
+{% block content %}
+		
+<h2 align="center">////////////////////////</h2>
+{% load staticfiles %}
+{% csrf_token %}
+
+<table class="table table-condensed" style="width:100%">
+				<tr>
+					<td class="active">#</td>
+					<td class="active"><b>LOGO</b></td>
+					<td class="active"><b>Όνομα Tour</b></td>
+					<td class="active"><b>Περιγραφή</b></td>
+					<td class="active"><b>Πρόγραμμα</b></td>
+					<td class="active"><b>Διάρκεια</b></td>
+					<td class="active"><b>Κόστος</b></td>
+					<td class="active"><b>Φωτογραφία</b></td>
+				</tr>	
+			{% for c in data %}
+				<tr>
+					<td class="success">{{ c.name.id }}</td>
+					<td class="danger">
+					<form action="{{ c.name.site }}">
+					<input style="width:200px;height:200px;" type="image" src="{{c.name.logo.url|safe}}" alt="LOGO" />
+					</form>
+					</td>
+					
+					<td class="success">{{ c.name.name }}</td>
+					<td class="danger">{{ c.name.perigrafh }}</td>
+					<td class="success">{{ c.name.timetable }}</td>
+					<td class="danger">{{ c.name.diarkeia }}</td>
+					<td class="success">{{ c.name.kostos }}</td>
+					<td class="danger">
+					
+					<form action="/tours/{{ c.name.id }}" >
+					<input src="{{ c.name.photo.url }}"style="width:200px;height:200px;" type="image"/>
+					</form>
+					
+					</td>	
+				</tr>
+			{% endfor %}
+		</table>
+
+
+
+		
+{% endblock %}

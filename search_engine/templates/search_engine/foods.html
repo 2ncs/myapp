@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-7" /> 
+  <title>Butlair</title> 
+  <script src="http://maps.google.com/maps/api/js?sensor=false" 
+          type="text/javascript"></script>
+		  
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>	
+		{% load staticfiles %}
+	<link href="{% static 'search_engine/css/bootstrap.min.css' %}" rel="stylesheet">	  
+	
+	<style>
+		.navbar-default {
+    background-color: red;
+    border-color: #030033;
+	
+	#header {
+			background-color:black;
+			color:white;
+			text-align:center;
+			padding:5px;
+		}
+		
+		#section {
+			width:1200px;
+			float:center;
+			padding:0px;
+		}
+		#footer {
+			background-color:black;
+			color:white;
+			clear:both;
+			text-align:center;
+			padding:5px;
+		}
+		
+		hr { 
+			display: block;
+			margin-top: 0.5em;
+			margin-bottom: 0.5em;
+			margin-left: auto;
+			margin-right: auto;
+			border-style: inset;
+			border-width: 3px;
+			border-color:grey;
+		} 
+		figcaption { 
+					display: block;
+					text-align:center;
+		}
+	
+		.row + .row {
+				border-top:0;
+				padding-right:20px;
+				border-left:20px;
+			}
+	
+	
+}
+</style>
+
+
+
+
+
+	
+</head> 
+
+<body>
+                    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Butlair</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="/rests/">Restaurants</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/tours/">Tours</a></li>
+            <li><a href="#">Shopping</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/logout/">Log Out</a></li>
+          </ul>
+        </li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+                {% block content %}
+                {% endblock %}
+
+
+                    <!-- Core Scripts - Include with every page -->
+                    <script src = "{% static 'log/js/jquery.min.js' %}"></script>
+                    <script src = "{% static 'log/js/bootstrap.min.js' %}"></script>
+        {% block javascript %}
+        {% endblock %}
+
+
+            </body>
+
+</html>
+	

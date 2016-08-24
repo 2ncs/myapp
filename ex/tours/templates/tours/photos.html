@@ -1,0 +1,25 @@
+{% extends "log/base.html" %}
+
+{% block content %}
+		
+<h2 align="center">////////////////////////</h2>
+{% load staticfiles %}
+{% csrf_token %}
+
+		<table class="table table-condensed" style="width:40%">
+			{% for c in data %}
+				<tr>
+					
+					<td>
+						<img src="{{ c.photo.url }}"style="width:400px;height:400px;"/>
+						
+					</td>
+					
+				</tr>
+			{% endfor %}
+		</table>
+
+
+
+		
+{% endblock %}

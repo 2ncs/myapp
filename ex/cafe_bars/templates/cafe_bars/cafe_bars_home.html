@@ -1,0 +1,98 @@
+{% extends "log/base.html" %}
+
+{% block content %}
+
+ 
+		
+<h2 align="center">What doesn't kill you.... eat it!!!</h2>
+
+<div class="container">
+<form action="/cafe_bars/results/" method="post" id="sub" >
+    {% csrf_token %}
+	<div class="row">
+	<div class="col-xs-6 col-md-4">
+	{{ form1 }}
+	</div>
+	<div class="col-xs-6 col-md-4">
+    {{ form2 }}
+	</div>
+	<div class="col-xs-6 col-md-4">
+	{{ form3 }}
+	</div>
+	<div id="lat_lon">
+	{{ form4 }}
+	</div>
+	</div>
+	<hr>
+	<h4>Είδος:</h4>
+	{{ form5 }}
+	<hr>
+	<div id="vr">
+	<h4>Extra:</h4>
+	{{ form6 }}
+	</div>
+	
+	<hr>
+	
+ 	
+</form>
+<button id="test" class="btn btn-success btn-block" width= 250px >Για να δούμε τι θα βρούμε...</button>
+
+</div>
+
+<script type="text/javascript">
+		
+		$("#lat_lon").hide();
+		
+		var map;
+		
+		document.getElementById("test").onclick = function() {myFunction()};
+		
+		function myFunction(){
+			
+			if($("#id_onoma").val()){document.forms["sub"].submit();}
+
+
+			else{
+				var myLatLng = {lat: 0, lng: 0};
+				var latitude,longitude;
+				var geocoder = new google.maps.Geocoder();
+				var address = $("#id_perioxh").val();
+				var marker;
+				
+				geocoder.geocode( { 'address': address}, function(results, status) {
+
+				if (status == google.maps.GeocoderStatus.OK) {
+					latitude = results[0].geometry.location.lat();
+					longitude = results[0].geometry.location.lng();
+					$("#id_lat").val(latitude);
+					$("#id_lon").val(longitude);
+					myLatLng.lat=latitude; 
+					myLatLng.lng=longitude;
+					document.forms["sub"].submit();	
+					
+					
+					
+					
+					}
+					}); 
+					
+				}
+				
+				
+			}
+	
+
+
+	
+
+
+
+</script>
+				
+	
+
+
+
+		
+{% endblock %}

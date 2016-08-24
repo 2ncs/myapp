@@ -1,0 +1,172 @@
+{% extends "log/base.html" %}
+
+{% block content %}
+
+
+
+		
+<h2 align="center">What doesn't kill you.... eat it!!!</h2>
+<div class="container">
+<form action="/rests/results/" method="post" id="sub" >
+    {% csrf_token %}
+	<div class="row">
+	<div class="col-xs-6 col-md-4">
+	{{ form0 }}
+	</div>
+	<div class="col-xs-6 col-md-4">
+    {{ form1 }}
+	</div>
+	<div class="col-xs-6 col-md-4">
+	{{ form8 }}
+	</div>
+	<div id="lat_lon">
+	{{ form7 }}
+	</div>
+	</div>
+	<hr>
+	<h4>Είδος κουζίνας:</h4>
+	{{ form2 }}
+	<hr>
+	<div id="vr">
+	<h4>Street Food:</h4>
+	{{ form3 }}
+	</div>
+	<div id="dieth">
+	<h4>Διεθνείς:</h4>
+	{{ form6 }}
+	</div>
+	<hr>
+	<h4>Εύρος Τιμής:</h4>
+	{{ form4 }}
+	<hr>
+	<h4>Εxtra:</h4>
+	{{ form5 }}
+	<hr>
+ 	
+</form>
+<button id="test" class="btn btn-success btn-block" width= 250px >Για να δούμε τι θα βρούμε...</button>
+<hr>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	
+<div class="container" id="map" style="height: 400px;" align="center" ></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+<script type="text/javascript">
+
+
+	
+	var map;
+	var address;
+	var locations = {{ stigma|safe }}
+	var myLatLng = {lat: {{ lat|safe }}, lng: {{ lon|safe }}};
+    
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: new google.maps.LatLng(myLatLng),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+	
+	for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+   
+
+	document.getElementById("test").onclick = function() {myFunction()};
+		
+		function myFunction(){
+			
+			if($("#id_onoma").val()){document.forms["sub"].submit();}
+			
+			else{
+				var latitude,longitude;
+				var geocoder = new google.maps.Geocoder();
+				address = $("#id_perioxh").val();
+				var marker;
+				
+				geocoder.geocode( { 'address': address}, function(results, status) {
+
+				if (status == google.maps.GeocoderStatus.OK) {
+					latitude = results[0].geometry.location.lat();
+					longitude = results[0].geometry.location.lng();
+					$("#id_lat").val(latitude);
+					$("#id_lon").val(longitude);
+					myLatLng.lat=latitude; 
+					myLatLng.lng=longitude;
+					document.forms["sub"].submit();
+					
+					
+			
+					}
+					}); 
+							
+				}
+		
+			}	
+		
+
+if(document.getElementById('id_street_food').checked==false){
+			$("#vr").hide();
+			}
+		
+if(document.getElementById('id_international').checked==false){
+			$("#dieth").hide();
+			}		
+	
+		$("#lat_lon").hide();	
+		
+$("#lat_lon").hide();
+		$(document).ready(function(){
+    $("#id_street_food").click(function(){
+        $("#vr").toggle();
+    });
+});
+
+	$(document).ready(function(){
+    $("#id_international").click(function(){
+        $("#dieth").toggle();
+    });
+});	
+			
+			
+				
+</script>
+
+
+	
+		<table class="table table-condensed" style="width:40%">
+				<tr>
+					<td class="active">#</td>
+					<td class="active">Όνομα Μαγαζιού</td>
+					<td class="active">Περιοχή</td>
+					<td class="active">Ιστοσελίδα</td>
+				</tr>	
+			{% for c in detail %}
+				<tr>
+					<td class="success">{{ c.id }}</td>
+					<td class="danger">{{ c.name }}</td>
+					<td class="success">{{ c.perioxh }}</td>
+					<td class="danger"><a href= "{{ c.site }}"> {{ c.site }}</a></td>
+					
+				</tr>
+			{% endfor %}
+		</table>
+
+</div>		
+{% endblock %}

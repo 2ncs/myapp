@@ -1,0 +1,169 @@
+{% extends "log/base.html" %}
+
+{% block content %}
+		
+<h2 align="center">Tours</h2>
+{% load staticfiles %}
+<div class="container">
+<div class="row">
+<form action="/tours/anazhthsh/" method="post" id="sub" class="form-inline">
+	{% csrf_token %}
+	
+	<div class="col-xs-12 col-md-8">
+	{{ form1 }}
+	<input class="btn btn-success btn-sm" type="submit" value="search" />
+	</div>
+	<div class=".col-xs-6 col-md-4">
+		{{ form2 }}
+	</div>
+	
+</form> 
+</div>
+<h1></h1>
+<hr>
+
+<div class="row">
+	
+	<div class="col-xs-6 col-sm-4">
+		<figure>
+			<fieldset>
+				<form onsubmit="get_action_classic(this);">
+					<input style="width:300px;height:270px;" type="image" src="{% static 'tours/img/1.jpg' %}" id="classic" name="classic" />
+					<figcaption><u> Classic </u></figcaption>
+				</form>
+			</fieldset>
+		</figure>
+	</div>
+	<div class="col-xs-6 col-sm-4">
+		<figure>
+			<fieldset>
+				<form action="/tours/thematic/">
+					<input style="width:300px;height:270px;" type="image" src="{% static 'tours/img/2.jpg' %}"/>
+					<figcaption><u> Thematic </u></figcaption>
+				</form>
+			<fieldset>
+		</figure>
+	</div>	
+	<div class="col-xs-6 col-sm-4">
+		<figure>
+			<fieldset>
+				<form onsubmit="get_action_bus(this);">
+					<input style="width:300px;height:270px;" type="image" src="{% static 'tours/img/3.jpg' %}" id="bus"/>
+					<figcaption><u> Bus </u></figcaption>
+				</form>
+			<fieldset>
+		</figure>
+	</div>	
+ 
+</div>
+<hr>	
+<div class="row">
+	
+	<div class="col-xs-6 col-sm-4">
+		<figure>
+			<fieldset>
+				<form onsubmit="get_action_cruises(this);">
+					<input style="width:300px;height:270px;" type="image" src="{% static 'tours/img/4.jpg' %}" id="cruises"/>
+					<figcaption><u> Cruises </u></figcaption>
+				</form>
+			</fieldset>
+		</figure>
+	</div>
+	<div class="col-xs-6 col-sm-4">
+		<figure>
+			<fieldset>
+				<form onsubmit="get_action_bicycle(this);">
+					<input style="width:300px;height:270px;" type="image" src="{% static 'tours/img/5.jpg' %}" id="bicycle"/>
+					<figcaption><u> Bicycle </u></figcaption>
+				</form>
+			<fieldset>
+		</figure>
+	</div>	
+	<div class="col-xs-6 col-sm-4">
+		<figure>
+			<fieldset>
+				<form onsubmit="get_action_excursions(this);">
+					<input style="width:300px;height:270px;" type="image" src="{% static 'tours/img/6.jpg' %}" id="excursions"/>
+					<figcaption><u> Excursions </u></figcaption>
+				</form>
+			<fieldset>
+		</figure>
+	</div>	
+ 
+</div>
+
+</div>
+<script type="text/javascript">
+
+
+function get_action_classic(form) {
+	if(document.getElementById('id_choice_0').checked){
+		form.action = "/tours/classics_group/";
+	}
+	else if(document.getElementById('id_choice_1').checked){
+		form.action = "/tours/classics_private/";
+	}
+	else{
+		form.action = "/tours/classics/";
+	}
+	  
+    }
+
+function get_action_bus(form) {
+	if(document.getElementById('id_choice_0').checked){
+		form.action = "/tours/bus_group/";
+	}
+	else if(document.getElementById('id_choice_1').checked){
+		form.action = "/tours/bus_private/";
+	}
+	else{
+		form.action = "/tours/bus/";
+	}
+	  
+    }	
+
+function get_action_bicycle(form) {
+	if(document.getElementById('id_choice_0').checked){
+		form.action = "/tours/bicycle_group/";
+	}
+	else if(document.getElementById('id_choice_1').checked){
+		form.action = "/tours/bicycle_private/";
+	}
+	else{
+		form.action = "/tours/bicycle/";
+	}
+	  
+    }	
+
+function get_action_cruises(form) {
+	if(document.getElementById('id_choice_0').checked){
+		form.action = "/tours/cruises_group/";
+	}
+	else if(document.getElementById('id_choice_1').checked){
+		form.action = "/tours/cruises_private/";
+	}
+	else{
+		form.action = "/tours/cruises/";
+	}
+	  
+    }	
+
+function get_action_excursions(form) {
+	if(document.getElementById('id_choice_0').checked){
+		form.action = "/tours/excursions_group/";
+	}
+	else if(document.getElementById('id_choice_1').checked){
+		form.action = "/tours/excursions_private/";
+	}
+	else{
+		form.action = "/tours/excursions/";
+	}
+	  
+    }	
+	
+	
+	
+	
+</script>
+		
+{% endblock %}

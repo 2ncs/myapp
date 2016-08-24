@@ -1,0 +1,68 @@
+{% extends "search_engine/foods.html" %}
+
+{% block content %}
+		
+<p>Hey fuck off!!</p>
+<p></p>
+<button id="test">find</button>
+<form action="/vaggelis/insert/" method="post">
+    {% csrf_token %}
+    {{ form1.as_ul }}
+	<p> </p>
+	{{ form2 }}
+	<p> </p>
+	{{ form3 }}
+	<p> </p>
+    <input type="submit" value="Submit" />
+
+	
+	
+</form>
+
+<div id="map" style="width: 500px; height: 400px;"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+<script type="text/javascript">
+		
+		var map;
+		
+		document.getElementById("test").onclick = function() {myFunction()};
+		
+		function myFunction(){
+			
+				
+				var myLatLng = {lat: 0, lng: 0};
+				var latitude,longitude;
+				var geocoder = new google.maps.Geocoder();
+				var address = $("#id_dieuthinsh").val();
+				var marker;
+				
+				geocoder.geocode( { 'address': address}, function(results, status) {
+
+				if (status == google.maps.GeocoderStatus.OK) {
+					latitude = results[0].geometry.location.lat();
+					longitude = results[0].geometry.location.lng();
+					$("#id_latitude").val(latitude);
+					$("#id_longitude").val(longitude);
+					myLatLng.lat=latitude; 
+					myLatLng.lng=longitude;
+					map = new google.maps.Map(document.getElementById('map'), {
+					zoom: 15,
+					center: new google.maps.LatLng(myLatLng),
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+					});
+					var marker = new google.maps.Marker({
+					position: myLatLng,
+					map: map,
+					title: 'hello'
+					});			
+					
+					
+					
+					}
+					}); 
+						
+				}
+</script>	
+{% endblock %}

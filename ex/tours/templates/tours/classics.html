@@ -1,0 +1,33 @@
+{% extends "tours/tours_home.html" %}
+
+{% block content %}
+		
+<h2 align="center">////////////////////////</h2>
+{% load staticfiles %}
+{% csrf_token %}
+
+<table class="table table-condensed" style="width:40%">
+				<tr>
+					<td class="active">#</td>
+					<td class="success">Όνομα</td>
+					<td class="danger">Perigrafh</td>
+					<td class="info">Diarkeia/td>
+				</tr>	
+			{% for c in data %}
+				<tr>
+					<td class="active">{{ c.name.id }}</td>
+					<td class="success">{{ c.name.name }}</td>
+					<td class="danger">{{ c.name.perigrafh }}</td>
+					<td>
+						<img src="{{ c.name.logo.url }}"style="width:70px;height:70px;"/>
+						
+					</td>
+					
+				</tr>
+			{% endfor %}
+		</table>
+
+
+
+		
+{% endblock %}
